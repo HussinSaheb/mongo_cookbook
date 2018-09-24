@@ -6,8 +6,6 @@
 # found at http://inspec.io/docs/reference/resources/
 
 
-
-
 describe service('mongod') do
   it {should be_enabled}
   it {should be_running}
@@ -19,6 +17,6 @@ describe package 'mongodb-org' do
 end
 
 
-describe port('0.0.0.0',27017) do
+describe port('0.0.0.0', 27017) do
   it { should be_listening }
 end

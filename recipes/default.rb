@@ -28,12 +28,10 @@ end
 
 file '/etc/mongod.conf' do
   action :delete
-  notifies(:restart, 'service[mongod]')
 end
 
 template '/etc/mongod.conf' do
   source 'mongod.conf.erb'
-  notifies(:restart, 'service[mongod]')
 end
 
 template '/lib/systemd/system/mongod.service' do
