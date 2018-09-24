@@ -4,6 +4,7 @@
 #
 # Copyright:: 2018, The Authors, All Rights Reserved.
 
+
 apt_repository 'mongodb-org' do
   uri "http://repo.mongodb.org/apt/ubuntu"
   distribution 'xenial/mongodb-org/3.2'
@@ -18,6 +19,24 @@ apt_update 'update' do
 end
 
 package 'mongodb-org' do
-  version "3.2.21"
-  action [:install, :upgrade]
+  action :upgrade
+end
+
+service 'mongod' do
+  action [:enable, :start]
+end
+
+file '/etc/mongod.conf' do
+  action :delete
+  notifies(:restart, 'service[mongod]')
+end
+
+template '/etc/mongod.conf' do
+  source 'mongod.conf.erb'
+  notifies(:restart, 'service[mongod]')
+end
+
+template '/lib/systemd/system/mongod.service' do
+  source 'mongod.service.erb'
+  notifies(:restart, 'service[mongod]')
 end
