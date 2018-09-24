@@ -9,6 +9,7 @@
 # This is an example test, replace it with your own test.
 
 
-describe package 'mongodb-org' do  it { should be_installed }
+describe package 'mongodb-org' do
+  it { should be_installed }
   its('version') { should match /3\./ }
 end

@@ -31,6 +31,4 @@ describe 'mongo::default' do
           expect(chef_run).to upgrade_package 'mongodb-org'
         end
   end
-
-
 end
