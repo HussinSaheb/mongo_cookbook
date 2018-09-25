@@ -19,7 +19,7 @@ apt_update 'update' do
 end
 
 package 'mongodb-org' do
-  action :upgrade
+  action [:install,:upgrade]
 end
 
 service 'mongod' do
